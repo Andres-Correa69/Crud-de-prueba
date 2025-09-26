@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Client;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<Client>
+ */
+class ClientFactory extends Factory
+{
+    protected $model = Client::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->optional()->e164PhoneNumber(),
+            'company' => $this->faker->optional()->company(),
+            'notes' => $this->faker->optional()->sentence(10),
+            'status' => $this->faker->randomElement(['active', 'inactive']),
+            'address' => $this->faker->optional()->address(),
+        ];
+    }
+}
+
+
